@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+// cors policy
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
