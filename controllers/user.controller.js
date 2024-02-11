@@ -152,9 +152,18 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 });
 
+//get User
+const getUser = asyncHandler(async (req, res) => {
+  const user = await userService.getUserById(req.user._id);
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "User Fetched successfully"));
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
   refreshAccessToken,
+  getUser,
 };
