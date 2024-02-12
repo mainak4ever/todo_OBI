@@ -1,3 +1,5 @@
+const { User } = require("../models/user.model");
+
 const generateAccessAndRefreshTokens = async (userId, generateBoth = true) => {
   try {
     const user = await User.findById(userId);
