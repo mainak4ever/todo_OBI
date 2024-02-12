@@ -2,32 +2,12 @@ const { User } = require("../models/user.model");
 const { userService } = require("../sevices");
 const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
+const generateAccessAndRefreshTokens = require("../utils/GenerateToken");
 const { asyncHandler } = require("../utils/asyncHandler");
 
 const options = {
   httpOnly: true,
   secure: true,
-};
-
-const generateAccessAndRefreshTokens = async (userId, generateBoth = true) => {
-  try {
-    const user = await User.findById(userId);
-    const accessToken = user.generateAccessToken();
-
-    if (generateBoth) {
-      const refreshToken = user.generateRefreshToken();
-
-      user.refreshToken = refreshToken;
-      await user.save({ validateBeforeSave: false });
-      return { accessToken, refreshToken };
-    }
-    return { accessToken };
-  } catch (error) {
-    throw new ApiError(
-      500,
-      "Something went wrong while generating refresh and access token"
-    );
-  }
 };
 
 // register user
@@ -66,6 +46,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (!isPasswordValid) {
     throw new ApiError(401, "Invalid Credentials");
   }
+  // console.log("Retrieved user:", user);
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
     user._id

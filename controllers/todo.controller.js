@@ -32,7 +32,9 @@ const updateTodo = asyncHandler(async (req, res) => {
 const getTodo = asyncHandler(async (req, res) => {
   const { todoId } = req.params;
   const todo = await todoService.getTodoById(todoId);
-
+  if (!todo) {
+    throw new ApiError(404, "Todo not found.");
+  }
   return res
     .status(200)
     .json(new ApiResponse(200, todo, "Todo fetched successfully"));
