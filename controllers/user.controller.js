@@ -8,7 +8,7 @@ const { asyncHandler } = require("../utils/asyncHandler");
 
 const options = {
   httpOnly: true,
-  // secure: true,
+  secure: true,
 };
 
 // register user

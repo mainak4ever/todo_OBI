@@ -9,7 +9,7 @@ const auth = asyncHandler(async (req, _, next) => {
       req.cookies?.accessToken ||
       req.header("Authorization")?.replace("Bearer ", "");
 
-    // console.log(token);
+    // console.log("Access Token", token);
 
     if (!token) {
       throw new ApiError(401, "Unauthorized request");
