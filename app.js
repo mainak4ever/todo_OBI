@@ -9,7 +9,7 @@ const app = express();
 
 // cors policy
 const corsOptions = {
-  origin: [conf.CORS_ORIGIN, conf.LOCAL_CORS_ORIGIN],
+  origin: conf.CORS_ORIGIN,
   credentials: true,
 };
 

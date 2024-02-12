@@ -9,7 +9,6 @@ const { asyncHandler } = require("../utils/asyncHandler");
 const options = {
   httpOnly: true,
   // secure: true,
-  // domain: conf.CORS_ORIGIN || conf.LOCAL_CORS_ORIGIN,
 };
 
 // register user
