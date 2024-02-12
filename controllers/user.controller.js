@@ -1,3 +1,4 @@
+const conf = require("../conf");
 const { User } = require("../models/user.model");
 const { userService } = require("../sevices");
 const { ApiError } = require("../utils/ApiError");
@@ -6,8 +7,9 @@ const generateAccessAndRefreshTokens = require("../utils/GenerateToken");
 const { asyncHandler } = require("../utils/asyncHandler");
 
 const options = {
-  httpOnly: true,
+  // httpOnly: true,
   secure: true,
+  // domain: conf.CORS_ORIGIN || conf.LOCAL_CORS_ORIGIN,
 };
 
 // register user
